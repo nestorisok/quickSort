@@ -3,7 +3,7 @@
 using namespace std;
 
 
-void quickSort(int arr[], int p, int right);
+void quickSort(int arr[], int low, int high);
 int partition(int arr[], int low, int high);
 void displayArr(int arr[], int arrSize);
 
@@ -11,8 +11,10 @@ int main(void) {
 
 	int myArr[] = { 9, 3, 4, 2, 1, 8 };
 	int arrSize = sizeof(myArr) / sizeof(int);
+	int mid = myArr[(0 + arrSize - 1) / 2]; // getting middle of array
+	// need rand
 
-	int begArr = myArr[0];
+	int begArr = 0;
 	int endArr = arrSize - 1;
 
 	displayArr(myArr, arrSize);
@@ -42,13 +44,13 @@ void displayArr(int arr[], int arrSize) {
 
 }
 
-void quickSort(int arr[], int p, int right) {
+void quickSort(int arr[], int low, int high) {
 
-	if (p < right) {
+	if (low < high) {
 
-		int p = partition(arr, p, right);
-		quickSort(arr, p, right);
-		quickSort(arr, p + 1, right);
+		int p = partition(arr, low, high);
+		quickSort(arr, low, p);
+		quickSort(arr, p + 1, high);
 
 
 	}
@@ -63,15 +65,24 @@ int partition(int arr[], int low, int high) {
 	int i = low - 1;
 	int j = high + 1;
 
-	while (i < pivot && j > pivot) {
-
-		while (arr[j] >= pivot) {
+	while (true) {
+	
+		do {
 			j--;
-		}
-		while (arr[i] <= pivot) {
+
+			//cout << "i: " << j << " " << " arr: " << arr[j] << "Pivot: " << pivot << endl;
+		} while (arr[j] > pivot);
+
+		do {
 			i++;
-		}
+		
+			//cout << "i: " << i << " " << " arr: " << arr[i] << "Pivot: " << pivot << endl;
+			
+		} while (arr[i] < pivot);
+
+
 		if (i < j) {
+
 			swap(arr[i], arr[j]);
 
 		}
@@ -80,7 +91,6 @@ int partition(int arr[], int low, int high) {
 		}
 
 	}
-
 
 	//return 0; // temp
 }
