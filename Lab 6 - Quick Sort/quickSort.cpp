@@ -5,7 +5,7 @@
 using namespace std;
 using namespace std::chrono;
 
-/*    First Element Sort    */	
+/*    First Element Sort    */
 void quickSortBeg(int arr[], int low, int high);
 int partitionBeg(int arr[], int low, int high);
 
@@ -60,7 +60,7 @@ int main(void) {
 
 	displayArr(mySecArr, secSize);
 	cout << "\nIt took " << midDuration.count() << " nanoseconds" << endl;
-	
+
 
 
 
@@ -74,7 +74,7 @@ int main(void) {
 	displayArr(myThArr, thSize);
 
 	auto randTimeBeg = high_resolution_clock::now();
-	quickSortMid(myThArr, begArr, endTh);
+	quickSortRand(myThArr, begArr, endTh);
 	auto randTimeEnd = high_resolution_clock::now();
 	auto randDuration = duration_cast<nanoseconds>(randTimeEnd - randTimeBeg);
 
@@ -119,7 +119,7 @@ int partitionBeg(int arr[], int low, int high) {
 	int j = high + 1;
 
 	while (true) {
-	
+
 		do {
 			j--;
 
@@ -128,9 +128,9 @@ int partitionBeg(int arr[], int low, int high) {
 
 		do {
 			i++;
-		
+
 			//cout << "i: " << i << " " << " arr: " << arr[i] << "Pivot: " << pivot << endl;
-			
+
 		} while (arr[i] < pivot);
 
 
@@ -169,7 +169,7 @@ void quickSortMid(int arr[], int low, int high) {
 
 int partitionMid(int arr[], int low, int high) {
 
-	int pivot = arr[(low+high)/2];
+	int pivot = arr[(low + high) / 2];
 	int i = low - 1;
 	int j = high + 1;
 
@@ -222,7 +222,7 @@ void quickSortRand(int arr[], int low, int high) {
 
 
 int partitionRand(int arr[], int low, int high) {
-
+	
 	int pivot = arr[rand() % (low + high)];
 	int i = low - 1;
 	int j = high + 1;
